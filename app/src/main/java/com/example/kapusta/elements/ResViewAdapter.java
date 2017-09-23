@@ -58,7 +58,12 @@ public class ResViewAdapter extends  RecyclerView.Adapter<ResViewAdapter.Element
         holder.tv_name.setText(elements.get(position).getName());
         holder.tv_number.setText("" +elements.get(position).getInfo());
         holder.iv_symbol.setImageResource(R.drawable.atom);
-        holder.cv.setOnClickListener(v -> listener.getElement("Delete " + elements.get(position).getName() + " element?"));
+        holder.cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.getElement(elements.get(position));
+            }
+        });
     }
 
     public void addElement(Element element){
