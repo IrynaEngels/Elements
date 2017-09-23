@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.kapusta.elements.ElementInterface.ElementListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,13 +35,16 @@ public class ResViewAdapter extends  RecyclerView.Adapter<ResViewAdapter.Element
     }
 
     List<Element> elements;
-    OnItemClic listener;
+    ElementListener listener;
 
-    ResViewAdapter(List<Element> elements, OnItemClic listener){
+    ResViewAdapter(List<Element> elements, ElementListener listener){
         this.elements = elements;
         this.listener = listener;
     }
 
+    public List<Element> getElements() {
+        return elements;
+    }
 
     @Override
     public ResViewAdapter.ElementViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -50,15 +55,15 @@ public class ResViewAdapter extends  RecyclerView.Adapter<ResViewAdapter.Element
 
     @Override
     public void onBindViewHolder(ElementViewHolder holder, final int position) {
-        holder.tv_name.setText(elements.get(position).name);
-        holder.tv_number.setText("" +elements.get(position).number);
-        holder.iv_symbol.setImageResource(elements.get(position).symbol);
-        holder.cv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.ontemClick(elements.get(position).info);
-            }
-        });
+        holder.tv_name.setText(elements.get(position).getName());
+        holder.tv_number.setText("" +elements.get(position).getInfo());
+        holder.iv_symbol.setImageResource(R.drawable.atom);
+        holder.cv.setOnClickListener(v -> listener.getElement("Delete " + elements.get(position).getName() + " element?"));
+    }
+
+    public void addElement(Element element){
+        getElements().add(element);
+        notifyDataSetChanged();
     }
 
 
@@ -67,7 +72,5 @@ public class ResViewAdapter extends  RecyclerView.Adapter<ResViewAdapter.Element
         return elements.size();
     }
 
-    public interface OnItemClic{
-        void ontemClick(String info);
-    }
+
 }

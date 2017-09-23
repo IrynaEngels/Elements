@@ -1,19 +1,56 @@
 package com.example.kapusta.elements;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by Kapusta on 10.09.2017.
  */
 
-public class Element {
-    String name;
-    int number;
-    int symbol;
-    String info;
+public class Element extends RealmObject {
 
-    Element(String name, String info, int number, int symbol) {
+    @PrimaryKey
+    private long id;
+    private String name;
+    private String info;
+
+    public Element() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
         this.name = name;
-        this.number = number;
-        this.symbol = symbol;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
         this.info = info;
     }
+
+    @Override
+    public String toString() {
+        return "Reminder{" +
+                "id=" + id +
+                ", name=" + name +
+                ", info='" + info + '\'' +
+                '}';
+    }
+
+
+
 }

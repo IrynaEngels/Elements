@@ -3,4 +3,7 @@
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="Lithium">soft, silvery-white alkali metal</string>
+    <string name="Aluminium">silvery-white, soft, nonmagnetic, ductile metal</string>
+    <string name="Titanium">lustrous transition metal with a silver color, low density, and high strength</string>
 </resources>
